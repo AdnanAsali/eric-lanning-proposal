@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Proposal — Eric Lanning | Database Consulting Brand</title>
+  <meta name="description" content="A professional UX/UI design and Webflow development proposal for Eric Lanning's database consulting brand website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #b0b0b0;
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== TOKENS ===== */
+    :root {
+      --bg: #0a0a0a;
+      --card: #161616;
+      --card-alt: #111111;
+      --border: #222222;
+      --border-hover: #009aff;
+      --accent: #009aff;
+      --accent-glow: rgba(0, 154, 255, 0.15);
+      --accent-subtle: rgba(0, 154, 255, 0.08);
+      --text-primary: #f0f0f0;
+      --text-secondary: #b0b0b0;
+      --text-muted: #6b6b6b;
+      --max-width: 1200px;
+      --nav-height: 64px;
+    }
+
+    /* ===== UTILITIES ===== */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 120px 0;
+    }
+    @media (max-width: 768px) {
+      .section { padding: 80px 0; }
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .gradient-text {
+      background: linear-gradient(141deg, #009aff 0%, #4dc8ff 50%, #009aff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #0088e6;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 154, 255, 0.25);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-ghost:hover {
+      border-color: var(--text-muted);
+      color: var(--text-primary);
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(34, 34, 34, 0.6);
+      transition: background 0.2s ease;
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      padding: 8px 16px;
+      border: 1px solid rgba(0, 154, 255, 0.3);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-cta:hover {
+      background: rgba(0, 154, 255, 0.08);
+      border-color: rgba(0, 154, 255, 0.5);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: var(--nav-height);
+      padding-bottom: 48px;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-media-base {
+      position: absolute;
+      inset: 0;
+      background: #000;
+    }
+    .hero-media-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 56%;
+    }
+    .hero-media-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 85% 65% at 50% 45%, rgba(0, 154, 255, 0.09) 0%, transparent 55%);
+    }
+    .hero-media-fade {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: min(42vh, 320px);
+      background: linear-gradient(to top, var(--bg) 0%, rgba(10, 10, 10, 0.65) 45%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 961px;
+      padding: 0 24px;
+    }
+    .hero-eyebrow {
+      font-size: clamp(13px, 1.35vw, 16px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 7.8vw, 79px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 28px;
+    }
+    .hero-title-line {
+      display: block;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.1vw, 21px);
+      color: var(--text-secondary);
+      line-height: 1.68;
+      max-width: 720px;
+      margin: 0 auto 40px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(36px, 5vw, 59px);
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      text-align: center;
+    }
+    .hero-meta-value {
+      font-size: clamp(20px, 2.4vw, 24.6px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .hero-meta-label {
+      font-size: clamp(12px, 1.35vw, 14.8px);
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+    }
+    .hero-meta-sep {
+      width: 1px;
+      height: 49px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .hero-media-image {
+        object-position: center 52%;
+      }
+      .hero-meta { gap: 28px; }
+      .hero-meta-sep { display: none; }
+    }
+
+
+    /* ===== SITE ARCHITECTURE (4 CARDS) ===== */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1024px) {
+      .arch-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .arch-grid { grid-template-columns: 1fr; }
+    }
+    .arch-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: all 0.2s ease;
+    }
+    .arch-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(0, 154, 255, 0.08);
+    }
+    .arch-card-num {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .arch-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .arch-card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== TOOLS & STACK ===== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      transition: all 0.2s ease;
+    }
+    .tool-card:hover {
+      border-color: rgba(0, 154, 255, 0.3);
+    }
+    .tool-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 22px;
+    }
+    .tool-icon--figma {
+      background: linear-gradient(135deg, #F24E1E20, #A259FF20);
+      color: #A259FF;
+    }
+    .tool-icon--webflow {
+      background: linear-gradient(135deg, #009aff18, #00b8ff28);
+      color: var(--accent);
+    }
+    .tool-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .tool-card-subtitle {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .tool-card-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      max-width: 700px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 48px;
+      padding-bottom: 48px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--border);
+    }
+    .timeline-week {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .timeline-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== DELIVERABLES ===== */
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .deliverables-grid { grid-template-columns: 1fr; }
+    }
+    .deliverable-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .deliverable-item:hover {
+      border-color: rgba(0, 154, 255, 0.2);
+    }
+    .deliverable-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: rgba(0, 154, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .deliverable-check svg {
+      width: 12px;
+      height: 12px;
+    }
+    .deliverable-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .deliverable-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== INVESTMENT / PRICING ===== */
+    .investment {
+      background: var(--card-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .investment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .investment-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 16px;
+      padding: 40px 36px;
+    }
+    .pricing-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .pricing-amount {
+      font-size: clamp(40px, 6vw, 56px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .pricing-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .pricing-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+    .pricing-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .pricing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pricing-row-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .pricing-row-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .investment-right h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .investment-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .investment-includes li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .investment-includes li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .investment-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding: 16px;
+      background: rgba(0, 154, 255, 0.04);
+      border-radius: 8px;
+      border-left: 2px solid rgba(0, 154, 255, 0.2);
+    }
+
+    /* ===== WELCOME / INTRODUCTION ===== */
+    .welcome-section {
+      text-align: center;
+    }
+    .welcome-section .section-title {
+      margin-bottom: 28px;
+    }
+    .welcome-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .welcome-prose p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .welcome-prose p:first-child {
+      font-size: 17px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .welcome-prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== FOOTER / CLOSING ===== */
+    .closing {
+      text-align: center;
+    }
+    .closing h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .closing p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+    .closing-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    .footer-bar {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px 32px;
+    }
+    .footer-legal {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+      flex: 1 1 220px;
+      min-width: min(100%, 280px);
+    }
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      font-size: 13px;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+    .footer-contact a {
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    .footer-contact a:hover {
+      opacity: 0.9;
+    }
+    .footer-email {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .footer-phone-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .footer-location {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .footer-phone {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    @media (max-width: 640px) {
+      .footer-bar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-contact {
+        align-items: flex-end;
+      }
+    }
+
+    /* ===== SIGNATURE (name + site) ===== */
+    .signature-section {
+      border-top: 1px solid var(--border);
+      padding: 96px 0 80px;
+    }
+    .signature-brand {
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+    }
+    .signature-brand-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+    }
+    .signature-name {
+      font-size: clamp(52px, 11vw, 118px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.075em;
+      line-height: 0.95;
+      margin: 0 0 12px;
+      width: max-content;
+      max-width: 100%;
+      text-align: center;
+    }
+    .signature-domain {
+      font-size: clamp(18px, 2.6vw, 27px);
+      font-weight: 300;
+      color: #cfcfcf;
+      letter-spacing: -0.06em;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      align-self: flex-start;
+    }
+    .signature-domain:hover {
+      color: var(--text-primary);
+    }
+    @media (max-width: 768px) {
+      .signature-section {
+        padding: 72px 0 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="#hero" class="nav-logo">Adnan Asali <span>/ proposal</span></a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-media" aria-hidden="true">
+      <div class="hero-media-base"></div>
+      <img class="hero-media-image" src="bg.png" alt="" decoding="async" fetchpriority="high">
+      <div class="hero-media-vignette"></div>
+      <div class="hero-media-fade"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Project Proposal — Eric Lanning</p>
+      <h1>
+        <span class="hero-title-line">Elevating Your <span class="gradient-text">Database</span></span>
+        <span class="hero-title-line"><span class="gradient-text">Consulting</span> Brand.</span>
+      </h1>
+      <p class="hero-sub">A professional, conversion-focused web presence designed to position your services in front of Canadian SMBs — crafted in Figma, built in Webflow.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">4 Pages</div>
+          <div class="hero-meta-label">Scope</div>
+        </div>
+        <div class="hero-meta-sep" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">4 Weeks</div>
+          <div class="hero-meta-label">Timeline</div>
+        </div>
+        <div class="hero-meta-sep" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">$3,000 USD</div>
+          <div class="hero-meta-label">Investment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTRODUCTION ===== -->
+  <section class="section welcome-section" id="introduction" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="margin-bottom: 32px;">
+        <h2 class="section-title">Hello, Eric.</h2>
+      </div>
+      <div class="welcome-prose">
+        <p>I am Adnan, a specialist UX/UI Designer who has worked with multiple startups and gained business experience, connecting the dots between UX/UI, business and tech.</p>
+        <p>I am happy to create the price offer for your consulting business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SITE ARCHITECTURE ===== -->
+  <section class="section" id="architecture" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="margin-bottom: 56px;">
+        <p class="section-label">Site Architecture</p>
+        <h2 class="section-title">Four Pages. Purpose-Driven.</h2>
+        <p class="section-subtitle">Each page serves a distinct role — establish credibility, communicate value, and generate qualified inquiries.</p>
+      </div>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card-num">01</div>
+          <div class="arch-card-title">Homepage</div>
+          <div class="arch-card-desc">Clear value proposition &amp; lead capture</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-num">02</div>
+          <div class="arch-card-title">About & Services</div>
+          <div class="arch-card-desc">Accessible overview of your data &amp; IT service offerings</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-num">03</div>
+          <div class="arch-card-title">Portfolio & Experience</div>
+          <div class="arch-card-desc">Case studies, testimonials, trust signals</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-num">04</div>
+          <div class="arch-card-title">Contact</div>
+          <div class="arch-card-desc">Streamlined inquiry form &amp; professional contact details</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOOLS & STACK ===== -->
+  <section class="section" id="process" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="margin-bottom: 56px;">
+        <p class="section-label">Tools &amp; Stack</p>
+        <h2 class="section-title">Built With Industry Standards</h2>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-icon tool-icon--figma">◆</div>
+          <div class="tool-card-title">Figma</div>
+          <div class="tool-card-subtitle">Design &amp; Prototyping</div>
+          <div class="tool-card-desc">Prior to any development, you will receive a fully interactive Figma prototype for review and approval. Every detail is visible before a single line of code is written.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon tool-icon--webflow">⬡</div>
+          <div class="tool-card-title">Webflow</div>
+          <div class="tool-card-subtitle">Development &amp; Launch</div>
+          <div class="tool-card-desc">The approved design is translated with precision into Webflow — performant, fully responsive, SEO-optimized, and straightforward for you to maintain independently.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="section" id="timeline" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="margin-bottom: 56px;">
+        <p class="section-label">Timeline</p>
+        <h2 class="section-title">Four Weeks to Launch</h2>
+        <p class="section-subtitle">A structured, milestone-based process from initial strategy through to a production-ready website.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Week 1</div>
+          <div class="timeline-title">UX Strategy &amp; Figma Wireframes</div>
+          <div class="timeline-desc">Content strategy, information architecture, and initial visual concepts delivered for your review.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Week 2</div>
+          <div class="timeline-title">UI Design &amp; Webflow Build</div>
+          <div class="timeline-desc">Approved prototype developed into a functional Webflow environment with all content integrated.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Week 3</div>
+          <div class="timeline-title">Mobile Optimization &amp; SEO</div>
+          <div class="timeline-desc">Cross-device responsive refinements, on-page SEO configuration, and performance optimization.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Week 4</div>
+          <div class="timeline-title">QA, Launch &amp; Handover</div>
+          <div class="timeline-desc">Comprehensive quality assurance, domain configuration, documentation delivery, and a hands-on training session.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DELIVERABLES ===== -->
+  <section class="section" id="deliverables" style="border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="margin-bottom: 56px;">
+        <p class="section-label">Deliverables</p>
+        <h2 class="section-title">Everything Included</h2>
+      </div>
+      <div class="deliverables-grid">
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">Custom Figma Prototype</div>
+            <div class="deliverable-desc">Interactive, shareable before build begins</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">Webflow Website Build</div>
+            <div class="deliverable-desc">4 pages, no templates</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">Fully Responsive</div>
+            <div class="deliverable-desc">Desktop, Tablet, Mobile</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">Basic On-Page SEO Setup</div>
+            <div class="deliverable-desc">Meta tags, headings, alt text</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">SEO Strategy Document</div>
+            <div class="deliverable-desc">Ongoing maintenance guide</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">"Zero-Code" Client Manual</div>
+            <div class="deliverable-desc">Manage your site without a developer</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">Domain Connection</div>
+            <div class="deliverable-desc">Connect your custom domain</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-check">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#009aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="deliverable-title">14-Day Post-Launch Support</div>
+            <div class="deliverable-desc">Bug fixes &amp; training included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INVESTMENT ===== -->
+  <section class="investment section" id="investment">
+    <div class="container">
+      <div style="margin-bottom: 56px;">
+        <p class="section-label">Investment</p>
+        <h2 class="section-title">Transparent Pricing</h2>
+      </div>
+      <div class="investment-grid">
+        <div class="pricing-card">
+          <div class="pricing-label">Fixed Project Fee</div>
+          <div class="pricing-amount">$3,000 <span style="font-size: 20px; font-weight: 500; color: var(--text-muted);">USD</span></div>
+          <div class="pricing-sub">All-inclusive. No hidden fees or additional charges.</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-breakdown">
+            <div class="pricing-row">
+              <span class="pricing-row-label">Deposit to secure your project slot</span>
+              <span class="pricing-row-value">50%</span>
+            </div>
+            <div class="pricing-row">
+              <span class="pricing-row-label">Upon Figma prototype approval</span>
+              <span class="pricing-row-value">25%</span>
+            </div>
+            <div class="pricing-row">
+              <span class="pricing-row-label">Prior to final launch</span>
+              <span class="pricing-row-value">25%</span>
+            </div>
+          </div>
+          <a href="#" class="btn-primary" style="width: 100%; justify-content: center;">Approve Proposal &amp; Get Started</a>
+        </div>
+        <div class="investment-right">
+          <h3>What's Included</h3>
+          <ul class="investment-includes">
+            <li>Custom 4-page Webflow website</li>
+            <li>Interactive Figma prototype</li>
+            <li>Fully responsive across all devices</li>
+            <li>On-page SEO setup &amp; strategy document</li>
+            <li>Client-friendly CMS training</li>
+            <li>Custom domain setup</li>
+            <li>14-day post-launch support window</li>
+            <li>"Zero-code" site management manual</li>
+          </ul>
+          <div class="investment-note">
+            Any scope changes beyond the agreed 4 pages, or additional integrations, will be quoted separately before proceeding.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIGNATURE ===== -->
+  <section class="signature-section" aria-labelledby="signature-name">
+    <div class="container">
+      <div class="signature-brand">
+        <div class="signature-brand-inner">
+          <h2 class="signature-name" id="signature-name">Adnan Asali</h2>
+          <a class="signature-domain" href="https://adnanasali.com" target="_blank" rel="noopener noreferrer">adnanasali.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-bar" id="contact">
+    <div class="container footer-bar-inner">
+      <p class="footer-legal">&copy; 2026 — All rights reserved. This proposal is confidential and intended solely for Eric Lanning.</p>
+      <div class="footer-contact">
+        <a class="footer-email" href="mailto:aasali40@gmail.com">aasali40@gmail.com</a>
+        <div class="footer-phone-line">
+          <span class="footer-location">Jerusalem - Palestine</span>
+          <a class="footer-phone" href="tel:+972542175812">+972 54 217 5812</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
